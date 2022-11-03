@@ -1,0 +1,30 @@
+{
+  "streams": [
+    {
+      "stream": {
+        "name": "abs_data",
+        "json_schema": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "properties": {
+            "metric_name": {
+              "type": "string"
+            },
+            "endpoint": {
+              "type": "string"
+            },
+            "start_period": {
+              "type": "string"
+            },
+            "dimension_detail": {
+              "type": "string"
+            }
+          }
+        },
+        "supported_sync_modes": ["full_refresh"]
+      },
+      "sync_mode": "full_refresh",
+      "destination_sync_mode": "overwrite"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "type": "object",
+  "required": [
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "type": ["null", "string"]
+        },
+        "id": {
+          "type": ["null", "string"]
+        },
+        "prepared": {
+          "type": ["null", "string"]
+        },
+        "test": {
+          "type": "boolean"
+        },
+        "contentLanguages": {
+          "type": "array",
+          "items": {
+            "type": ["null", "string"]
+          }
+        },
+        "sender": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": ["null", "string"]
+            },
+            "name": {
+              "type": ["null", "string"]
+            },
+            "names": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": ["null", "string"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "dataSets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": ["null", "string"]
+              },
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "urn": {
+                      "type": ["null", "string"]
+                    },
+                    "rel": {
+                      "type": ["null", "string"]
+                    }
+                  }
+                }
+              },
+              "annotations": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "observations": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "structure": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": ["null", "string"]
+            },
+            "names": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": ["null", "string"]
+                }
+              }
+            },
+            "description": {
+              "type": ["null", "string"]
+            },
+            "descriptions": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": ["null", "string"]
+                }
+              }
+            },
+            "dimensions": {
+              "type": "object",
+              "properties": {
+                "dataset": {
+                  "type": "array",
+                  "items": {
+                    "type": ["null", "string"]
+                  }
+                },
+                "series": {
+                  "type": "array",
+                  "items": {
+                    "type": ["null", "string"]
+                  }
+                },
+                "observation": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": ["null", "string"]
+                      },
+                      "name": {
+                        "type": ["null", "string"]
+                      },
+                      "names": {
+                        "type": "object",
+                        "properties": {
+                          "en": {
+                            "type": ["null", "string"]
+                          }
+                        }
+                      },
+                      "keyPosition": {
+                        "type": "integer"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": ["null", "string"]
+                        }
+                      },
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": ["null", "string"]
+                            },
+                            "order": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": ["null", "string"]
+                            },
+                            "names": {
+                              "type": "object",
+                              "properties": {
+                                "en": {
+                                  "type": ["null", "string"]
+                                }
+                              }
+                            },
+                            "annotations": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "dataSet": {
+                  "type": "array",
+                  "items": {
+                    "type": ["null", "string"]
+                  }
+                },
+                "series": {
+                  "type": "array",
+                  "items": {
+                    "type": ["null", "string"]
+                  }
+                },
+                "observation": {
+                  "type": "array",
+                  "items": {
+                    "type": ["null", "string"]
+                  }
+                }
+              }
+            },
+            "annotations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
