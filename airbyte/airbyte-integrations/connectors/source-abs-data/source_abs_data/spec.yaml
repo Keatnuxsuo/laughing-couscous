@@ -1,0 +1,25 @@
+documentationUrl: https://docsurl.com
+connectionSpecification:
+  $schema: http://json-schema.org/draft-07/schema#
+  title: Abs Data Spec
+  type: object
+  required:
+    - metric_name
+    - endpoint
+    - start_date
+    - dimension_detail
+  properties:
+    metric_name:
+      type: string
+      description: User-friendly name for the metric - this will be the column header in the target table (use underscore as separator)
+    endpoint:
+      type: string
+      description: The endpoint for the metric up to the ? as taken from ABS Data Explorer
+    start_date:
+      type: string
+      description: Year to extract the data - '2021' to get Census 2021 data
+      default: "2021"
+    dimension_detail:
+      type: string
+      description: How much detail to provide for the dimensions at each observation
+      default: "AllDimensions"
