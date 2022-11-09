@@ -1,0 +1,19 @@
+documentationUrl: https://developer.domain.com.au/docs/latest/apis/pkg_properties_locations/references/salesresults_listings
+connectionSpecification:
+  $schema: http://json-schema.org/draft-07/schema#
+  title: Domain API - Sales Listings
+  type: object
+  required:
+    - api_key
+    - cities
+  properties:
+    api_key:
+      type: string
+      description: API key for Domain API => https://developer.domain.com.au
+    cities:
+      type: string
+      examples:
+        - Sydney
+        - Melbourne
+        - Adelaide
+      description: Comma-separated list of cities to query.
