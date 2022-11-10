@@ -1,0 +1,47 @@
+{
+    "streams": [
+      {
+        "stream": {
+          "name": "domain_sales_listings",
+          "json_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "agencyId": { "type": ["null", "string"] },
+                    "id": { "type": ["null", "int"] },
+                    "propertyDetailsUrl": { "type": ["null", "string"] },
+                    "agencyName": { "type": ["null", "string"] },
+                    "agencyProfilePageUrl": { "type": ["null", "string"] },
+                    "agent": { "type": ["null", "string"] },
+                    "bathrooms": { "type": ["null", "int"] },
+                    "bedrooms": { "type": ["null", "int"] },
+                    "carspaces": { "type": ["null", "int"] },
+                    "geoLocation": {
+                      "type": "object",
+                      "properties": {
+                            "latitude": { "type": ["null", "double"] },
+                            "longitude": { "type": ["null", "double"] }
+                      }
+                    },
+                    "postcode": { "type": ["null", "string"] },
+                    "price": { "type": ["null", "int"] },
+                    "propertyType": { "type": ["null", "string"] },
+                    "result": { "type": ["null", "string"] },
+                    "state": { "type": ["null", "string"] },
+                    "streetName": { "type": ["null", "string"]},
+                    "streetNumber": { "type": ["null", "string"] },
+                    "streetType": { "type": ["null", "string"] },
+                    "suburb": { "type": ["null", "string"] },
+                    "unitNumber": { "type": ["null", "string"] }
+                }            
+              }
+          },
+          "supported_sync_modes": ["full_refresh"]
+        },
+        "sync_mode": "full_refresh",
+        "destination_sync_mode": "append"
+      }
+    ]
+  }
