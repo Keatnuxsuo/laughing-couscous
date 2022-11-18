@@ -28,30 +28,6 @@ import json
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Mount S3 bucket
-
-# COMMAND ----------
-
-ACCESS_KEY = 'AKIAS53BZIUOMCLCIG7L'
-SECRET_KEY = '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'
-ENCODED_SECRET_KEY = urllib.parse.quote(string=SECRET_KEY, safe="")
-AWS_S3_BUCKET = 'bc-proj2'
-MOUNT_NAME = '/mnt/abs_data'
-
-# COMMAND ----------
-
-SOURCE_URL = 's3n://{0}:{1}@{2}'.format(ACCESS_KEY, ENCODED_SECRET_KEY, AWS_S3_BUCKET)
-
-# COMMAND ----------
-
-if not (any(mount.mountPoint == MOUNT_NAME for mount in dbutils.fs.mounts())):
-    dbutils.fs.mount(SOURCE_URL, MOUNT_NAME)
-else:
-    print("Drive already mounted.")
-
-# COMMAND ----------
-
-# MAGIC %md
 # MAGIC ### Create dataframe from drop zone
 
 # COMMAND ----------
@@ -202,11 +178,3 @@ out_df.createOrReplaceTempView('df')
 # MAGIC        state::string,
 # MAGIC        metric_value::bigint
 # MAGIC FROM df
-
-# COMMAND ----------
-
-dbutils.fs.mounts()
-
-# COMMAND ----------
-
-

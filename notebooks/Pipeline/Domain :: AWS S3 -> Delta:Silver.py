@@ -1,31 +1,4 @@
 # Databricks notebook source
-import urllib
-
-ACCESS_KEY = 'AKIA4Q3QTMVFBT227RNX'
-SECRET_KEY = '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'
-ENCODED_SECRET_KEY = urllib.parse.quote(string=SECRET_KEY, safe="")
-AWS_S3_BUCKET = 'domain-dwh/'
-MOUNT_NAME = '/mnt/domain_data'
-
-# COMMAND ----------
-
-# SOURCE_URL = 's3n://{0}:{1}@{2}'.format(ACCESS_KEY, ENCODED_SECRET_KEY, AWS_S3_BUCKET)
-
-# SOURCE_URL
-
-# COMMAND ----------
-
-#mount s3
-if not (any(mount.mountPoint == MOUNT_NAME for mount in dbutils.fs.mounts())):
-    dbutils.fs.mount(SOURCE_URL, MOUNT_NAME)
-else:
-    print("Drive already mounted.")
-
-#unmount
-#dbutils.fs.unmount('/mnt/domain_data')
-
-# COMMAND ----------
-
 #list out S3 objects
 #jsonl is the output from airbyte. DB read jsonl the same way as json
 listings = '/mnt/domain_data/bronze/domain/sales_listings/domain_sales_listings_stream/'
