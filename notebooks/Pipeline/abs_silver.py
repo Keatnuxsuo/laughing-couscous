@@ -1,5 +1,7 @@
 # Databricks notebook source
 # MAGIC %md
+# MAGIC ### Preconditions
+# MAGIC S3 Bucket mounted to /mnt/abs_data
 # MAGIC ### Settings
 # MAGIC dataset = the bucket name in AWS for the source data<br>
 # MAGIC dimension_1 = choice of STATE or REGION to extract these values from the observation key (colon-delimited)<br>
@@ -27,6 +29,10 @@ import json
 
 # COMMAND ----------
 
+MOUNT_POINT = '/mnt/abs_data'
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Create dataframe from drop zone
 
@@ -39,7 +45,7 @@ import json
 # COMMAND ----------
 
 dataset = dbutils.widgets.get('dataset')
-df = spark.read.text(f'dbfs:/mnt/abs_data/{dataset}/abs_data/*.jsonl')
+df = spark.read.text(f'{MOUNT_POINT}/{dataset}/abs_data/*.jsonl')
 data = df.collect()
 src_data = json.loads(data[0]['value'])
 
