@@ -30,11 +30,6 @@ display(df.take(5))
 
 # COMMAND ----------
 
-# # TESTING
-# df = df1
-
-# COMMAND ----------
-
 df.count()
 
 # COMMAND ----------
