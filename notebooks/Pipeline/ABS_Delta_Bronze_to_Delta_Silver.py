@@ -5,7 +5,7 @@
 
 # COMMAND ----------
 
-#hhld_size_df = spark.read.load('/mnt/abs_data/hhld_size/delta')
+hhld_size_df = spark.read.load('/mnt/abs_data/hhld_size/delta')
 med_age_df = spark.read.load('/mnt/domain_data/bronze/abs/med_age_persons/delta')
 med_income_df = spark.read.load('/mnt/domain_data/bronze/abs/med_ttl_fam_income_weekly/delta')
 mortgage_pymt_df = spark.read.load('/mnt/domain_data/bronze/abs/med_mortgage_repymt_mthly/delta')
@@ -13,7 +13,7 @@ rent_pymt_df = spark.read.load('/mnt/domain_data/bronze/abs/med_rent_weekly/delt
 
 # COMMAND ----------
 
-#hhld_size_df.createOrReplaceTempView('hhld_size__bronze')
+hhld_size_df.createOrReplaceTempView('hhld_size__bronze')
 med_age_df.createOrReplaceTempView('med_age__bronze')
 med_income_df.createOrReplaceTempView('med_income__bronze')
 mortgage_pymt_df.createOrReplaceTempView('mortgage_pymt__bronze')
@@ -21,24 +21,25 @@ rent_pymt_df.createOrReplaceTempView('rent_pymt__bronze')
 
 # COMMAND ----------
 
-# CREATE OR REPLACE TABLE silver.household_size
-# LOCATION '/mnt/abs_data/household_size/delta'
-# AS
-# SELECT 
-#   State,
-#   CASE State 
-#     WHEN 'New South Wales' THEN 'NSW' 
-#     WHEN 'Victoria' THEN 'VIC'
-#     WHEN 'Tasmania' THEN 'TAS'
-#     WHEN 'Australian Capital Territory' THEN 'ACT'
-#     WHEN 'South Australia' THEN 'SA'
-#     WHEN 'Western Australia' THEN 'WA'
-#     WHEN 'Queensland' THEN 'QLD'
-#     ELSE 'OTH'
-#     END AS State_Abbr,
-#   Postcode as Postcode,
-#   Value as Household_size
-#   FROM hhld_size__bronze;
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE silver.household_size
+# MAGIC LOCATION '/mnt/abs_data/household_size/delta'
+# MAGIC AS
+# MAGIC SELECT 
+# MAGIC   State,
+# MAGIC   CASE State 
+# MAGIC     WHEN 'New South Wales' THEN 'NSW' 
+# MAGIC     WHEN 'Victoria' THEN 'VIC'
+# MAGIC     WHEN 'Tasmania' THEN 'TAS'
+# MAGIC     WHEN 'Australian Capital Territory' THEN 'ACT'
+# MAGIC     WHEN 'South Australia' THEN 'SA'
+# MAGIC     WHEN 'Western Australia' THEN 'WA'
+# MAGIC     WHEN 'Queensland' THEN 'QLD'
+# MAGIC     ELSE 'OTH'
+# MAGIC     END AS State_Abbr,
+# MAGIC   Postcode as Postcode,
+# MAGIC   Value as Household_size
+# MAGIC FROM hhld_size__bronze;
 
 # COMMAND ----------
 
