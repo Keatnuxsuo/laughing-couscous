@@ -29,7 +29,7 @@ with DAG(
     # This dictionary is used to dynamically generate the tasks required.
     airbyte_abs_endpoints = dict(
             med_age_persons=Variable.get("airbyte_ajp_01_abs_med_age_persons"),
-            #count_households=Variable.get("airbyte_ajp_01_abs_count_households"),
+            count_households=Variable.get("airbyte_ajp_01_abs_count_households"),
             med_mortgage_repymt_mthly=Variable.get("airbyte_ajp_01_abs_med_mortgage_repymt_mthly"),
             med_rent_weekly=Variable.get("airbyte_ajp_01_abs_med_rent_weekly"),
             med_ttl_fam_income_weekly=Variable.get("airbyte_ajp_01_abs_med_ttl_fam_income_weekly")
