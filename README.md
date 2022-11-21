@@ -125,22 +125,23 @@ Domain:
 
 12. Set up connections from each ABS API and Domain endpoint as per the table below. All of them should be configured as manual syncs.
 
-| Source | Destination |
-|:---    |:---         |
-| ABS API - med_age_persons | S3 - ABS - med_age_persons
-| ABS API - med_mortgage_repymt_mthly | S3 - ABS - med_mortgage_repymt_mthly
-| ABS API - med_rent_weekly | S3 - ABS - med_rent_weekly
-| ABS API - med_ttl_fam_income_weekly | S3 - ABS - med_ttl_fam_income_weekly
-| Domain API | S3 - Domain
+| Source | Destination | Frequency   | Namespace | Custom format | Sync mode |
+|:---    |:---         |:---         |:---       |:---           |:---       |
+| ABS API - med_age_persons | S3 - ABS - med_age_persons | Manual sync | Mirror source structure | N/A | full refresh/overwrite
+| ABS API - med_mortgage_repymt_mthly | S3 - ABS - med_mortgage_repymt_mthly | Manual sync | Mirror source structure | N/A | full refresh/overwrite
+| ABS API - med_rent_weekly | S3 - ABS - med_rent_weekly | Manual sync | Mirror source structure | N/A | full refresh/overwrite
+| ABS API - med_ttl_fam_income_weekly | S3 - ABS - med_ttl_fam_income_weekly | Manual sync | Mirror source structure | N/A | full refresh/overwrite
+| Domain API | S3 - Domain | Manual sync | Custom format | sales_listings | full refresh/append
 
 13. Copy each connection's ID from its page URL for later use in Airflow.
 
 ### Databricks
 1. Navigate to your Databricks tenant
-2. Set up the GitHub repo integration as per [Databricks documentation](https://docs.databricks.com/repos/repos-setup.html)
-3. Navigate to Workflows in your Databricks tenant
-4. Create a new cluster
-5. Create a new job for each notebook. Note the job names - they will be necessary for Airflow.
+2. Create a personal access token as per [Databricks documentation](https://docs.databricks.com/dev-tools/auth.html#:~:text=To%20create%20a%20Databricks%20personal%20access%20token%20for,Copy%20the%20displayed%20token%2C%20and%20then%20click%20Done.)
+3. Set up the GitHub repo integration as per [Databricks documentation](https://docs.databricks.com/repos/repos-setup.html)
+4. Navigate to Workflows in your Databricks tenant
+5. Create a new cluster
+6. Create a new job for each notebook. Note the job names - they will be necessary for Airflow.
 
 ### Airflow
 1. Install Docker on the machine you wish to use it on (locally or virtual machine)
@@ -149,10 +150,30 @@ Domain:
 4. Run docker-compose up. This will build a custom, extended Docker image that includes Airbyte and Databricks providers
 5. Configure the following connections:
     - Airbyte
+        - Name: airbyte-ajp-01
+        - Host: IP address of your VM
+        - Port: 8001 (default)
     - Databricks
+        - Name: airbyte-databricks-01
+        - Host: URL of your Databricks tenant
+        - Password: Your personal access token from Databricks step 2
 6. Configure the following variables:
-    - One per notebook
+    - One per Databricks job/notebook
     - One per Airbyte integration
+
+The table below shows the variables to set up.
+| Key | Val |
+|:--- |:--- |
+airbyte_ajp_01_abs_med_age_persons | Your med_age_persons airbyte connector ID
+airbyte_ajp_01_abs_med_mortgage_repymt_mthly | Your abs_med_mortgage_repymt_mthly airbyte connector ID
+airbyte_ajp_01_abs_med_rent_weekly | Your med_rent_weekly airbyte connector ID
+airbyte_ajp_01_abs_med_ttl_fam_income_weekly | Your med_ttl_fam_income_weekly airbyte connector ID
+airbyte_ajp_01_domain_api_sync | Your Domain airbyte connector ID
+ajp_airbyte_connection | airbyte-ajp-01
+ajp_databricks_connection | airbyte-databricks-01
+
+
+
 7. If necessary, copy airflow/dags/domain_dwh.py to the correct folder for your Airflow docker image.
 
 ## Acknowledgments
