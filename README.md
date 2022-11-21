@@ -171,8 +171,14 @@ airbyte_ajp_01_abs_med_ttl_fam_income_weekly | Your med_ttl_fam_income_weekly ai
 airbyte_ajp_01_domain_api_sync | Your Domain airbyte connector ID
 ajp_airbyte_connection | airbyte-ajp-01
 ajp_databricks_connection | airbyte-databricks-01
+databricks_abs_bronze_job_name | Job set up for ABS_AWS_S3_Delta_Bronze.py
+databricks_abs_domain_gold_job_name | Job set up for Combined_Delta_to_Delta_Gold.py
+databricks_abs_silver_job_name | Job set up for ABS_Delta_Bronze_to_Delta_Silver.py
+databricks_domain_bronze_job_name |	Job set up for Domain_AWS_S3_to_Delta_Bronze.py
+databricks_domain_silver_job_name | Job set up for Domain_Delta_Bronze_to_Delta_Silver.py
 
-
+Here's a sample of how it might look, including job IDs if you wish to configure them (they are not necessary).
+![images/airflow_variables_cloud.png](images/airflow_variables_cloud.png)
 
 7. If necessary, copy airflow/dags/domain_dwh.py to the correct folder for your Airflow docker image.
 
