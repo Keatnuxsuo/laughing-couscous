@@ -13,6 +13,12 @@ domain_df.createOrReplaceTempView('domain_vw')
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC 
+# MAGIC SELECT * FROM abs_vw
+
+# COMMAND ----------
+
 display(abs_df)
 
 # COMMAND ----------
@@ -123,10 +129,15 @@ display(domain_df)
 # MAGIC   streetType AS StreetType,
 # MAGIC   suburb AS Suburb,
 # MAGIC   city AS City,
-# MAGIC   postcode AS Postcode,
-# MAGIC   UPPER(state) AS State,
+# MAGIC   D.postcode AS Postcode,
+# MAGIC   UPPER(D.state) AS State,
 # MAGIC   latitude AS Latitude,
 # MAGIC   longitude AS Longitude,
 # MAGIC   result AS Result,
-# MAGIC   propertyDetailsURL AS DomainURL
-# MAGIC FROM domain_vw;
+# MAGIC   propertyDetailsURL AS DomainURL,
+# MAGIC   A.rent_payment AS MedicanRentPayment,
+# MAGIC   A.mortgage_payment AS MedianMortgagePayment,
+# MAGIC   A.median_income AS MedianIncome,
+# MAGIC   A.median_age AS MedianAge
+# MAGIC FROM domain_vw D
+# MAGIC LEFT OUTER JOIN abs_vw A ON A.Postcode = D.Postcode;
