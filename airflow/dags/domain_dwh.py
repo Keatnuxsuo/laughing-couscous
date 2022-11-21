@@ -35,17 +35,11 @@ with DAG(
             med_ttl_fam_income_weekly=Variable.get("airbyte_ajp_01_abs_med_ttl_fam_income_weekly")
         )
 
-
     databricks_airflow_conn = Variable.get("ajp_databricks_connection")
     databricks_domain_bronze_job_name = Variable.get("databricks_domain_bronze_job_name")
-    databricks_domain_bronze_job_id = Variable.get("databricks_domain_bronze_job_id")
     databricks_abs_bronze_job_name = Variable.get("databricks_abs_bronze_job_name")
-    databricks_abs_bronze_job_id = Variable.get("databricks_abs_bronze_job_id")    
     databricks_domain_silver_job_name = Variable.get("databricks_domain_silver_job_name")
-    databricks_domain_silver_job_id = Variable.get("databricks_domain_silver_job_id")
     databricks_abs_silver_job_name = Variable.get("databricks_abs_silver_job_name")
-    databricks_abs_silver_job_id = Variable.get("databricks_abs_silver_job_id")    
-    databricks_combined_gold_job_id = Variable.get("databricks_abs_domain_gold_job_id")
     databricks_combined_gold_job_name = Variable.get("databricks_abs_domain_gold_job_name")
 
     # endregion Connections/variables
@@ -107,6 +101,10 @@ with DAG(
         databricks_conn_id=databricks_airflow_conn
     )
 
+    # endregion Tasks
+
+    # region DAG
     airbyte_abs_tasks >> databricks_task_abs_bronze >> databricks_task_abs_silver
     airbyte_task_domain >> databricks_task_domain_bronze >> databricks_task_domain_silver
     [databricks_task_abs_silver, databricks_task_domain_silver] >> databricks_task_combined_gold
+    # endregion DAG
