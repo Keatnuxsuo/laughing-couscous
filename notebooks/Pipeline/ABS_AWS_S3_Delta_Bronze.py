@@ -98,7 +98,7 @@ def extract_03(keys, values, dimensions, target):
 # COMMAND ----------
 
 # Extracting and defining the Dataframes
-hhld_size_df = extract('hhld_size')
+hhld_size_df = extract('count_households')
 med_age_df = extract('med_age_persons')
 med_income_df = extract('med_ttl_fam_income_weekly')
 mortgage_pymt_df = extract('med_mortgage_repymt_mthly')
@@ -140,7 +140,7 @@ rent_pymt_df.createOrReplaceTempView('rent_pymt_vw')
 
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE bronze.hhld_size
-# MAGIC LOCATION '/mnt/abs_data/hhld_size/delta'
+# MAGIC LOCATION '/mnt/domain_data/bronze/abs/hhld_size/delta'
 # MAGIC AS
 # MAGIC SELECT sha2(concat_ws('||', array(Metric, State, Postcode, Value)), 256) as hhld_size_key, 
 # MAGIC        Metric::string,

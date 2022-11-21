@@ -5,7 +5,7 @@
 
 # COMMAND ----------
 
-hhld_size_df = spark.read.load('/mnt/abs_data/hhld_size/delta')
+hhld_size_df = spark.read.load('/mnt/domain_data/bronze/abs/hhld_size/delta')
 med_age_df = spark.read.load('/mnt/domain_data/bronze/abs/med_age_persons/delta')
 med_income_df = spark.read.load('/mnt/domain_data/bronze/abs/med_ttl_fam_income_weekly/delta')
 mortgage_pymt_df = spark.read.load('/mnt/domain_data/bronze/abs/med_mortgage_repymt_mthly/delta')
@@ -23,7 +23,7 @@ rent_pymt_df.createOrReplaceTempView('rent_pymt__bronze')
 
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE silver.household_size
-# MAGIC LOCATION '/mnt/abs_data/household_size/delta'
+# MAGIC LOCATION '/mnt/domain_data/silver/household_size/delta'
 # MAGIC AS
 # MAGIC SELECT 
 # MAGIC   State,
