@@ -98,7 +98,7 @@ def extract_03(keys, values, dimensions, target):
 # COMMAND ----------
 
 # Extracting and defining the Dataframes
-#hhld_size_df = extract('hhld_size')
+hhld_size_df = extract('count_households')
 med_age_df = extract('med_age_persons')
 med_income_df = extract('med_ttl_fam_income_weekly')
 mortgage_pymt_df = extract('med_mortgage_repymt_mthly')
@@ -106,7 +106,7 @@ rent_pymt_df = extract('med_rent_weekly')
 
 # COMMAND ----------
 
-#display(hhld_size_df)
+display(hhld_size_df)
 
 # COMMAND ----------
 
@@ -126,7 +126,7 @@ display(rent_pymt_df)
 
 # COMMAND ----------
 
-#hhld_size_df.createOrReplaceTempView('hhld_size_vw')
+hhld_size_df.createOrReplaceTempView('hhld_size_vw')
 med_age_df.createOrReplaceTempView('med_age_vw')
 med_income_df.createOrReplaceTempView('med_income_vw')
 mortgage_pymt_df.createOrReplaceTempView('mortgage_pymt_vw')
@@ -138,15 +138,16 @@ rent_pymt_df.createOrReplaceTempView('rent_pymt_vw')
 
 # COMMAND ----------
 
-# CREATE OR REPLACE TABLE bronze.hhld_size
-# LOCATION '/mnt/abs_data/hhld_size/delta'
-# AS
-# SELECT sha2(concat_ws('||', array(Metric, State, Postcode, Value)), 256) as hhld_size_key, 
-#        Metric::string,
-#        State::string,
-#        Postcode::string,
-#        Value::bigint
-# FROM hhld_size_vw
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE bronze.hhld_size
+# MAGIC LOCATION '/mnt/domain_data/bronze/abs/hhld_size/delta'
+# MAGIC AS
+# MAGIC SELECT sha2(concat_ws('||', array(Metric, State, Postcode, Value)), 256) as hhld_size_key, 
+# MAGIC        Metric::string,
+# MAGIC        State::string,
+# MAGIC        Postcode::string,
+# MAGIC        Value::bigint
+# MAGIC FROM hhld_size_vw
 
 # COMMAND ----------
 
