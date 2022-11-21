@@ -113,10 +113,12 @@ display(df_bronze_target['identifier', 'week_of_year'])
 # MAGIC   TARGET.identifier = SOURCE.identifier 
 # MAGIC   AND SOURCE.week_of_year = TARGET.week_of_year
 # MAGIC   AND TARGET.result = SOURCE.result
+# MAGIC -- equivalent of Python whenMatchedUpdateAll
 # MAGIC WHEN MATCHED THEN
-# MAGIC   UPDATE SET * -- equivalent of Python whenMatchedUpdateAll
+# MAGIC   UPDATE SET * 
+# MAGIC -- equivalent of Python whenNotMatchedInsertAll
 # MAGIC WHEN NOT MATCHED THEN
-# MAGIC   INSERT *; -- equivalent of Python whenNotMatchedInsertAll
+# MAGIC   INSERT *; 
 
 # COMMAND ----------
 
